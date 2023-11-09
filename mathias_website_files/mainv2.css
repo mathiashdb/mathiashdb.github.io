@@ -1,0 +1,438 @@
+/*I love me some border-box*/
+* {
+    box-sizing: border-box;
+}
+/*This just stops me getting horizontal scrolling if anything overflows the width*/
+body {
+    overflow-x: hidden;
+}
+/*Just removing default browser padding/margin*/
+html,
+body {
+    padding: 0;
+    margin: 0;
+    color: #ebebeb;
+}
+
+a:link {
+    color: rgba(10,0,0,1);
+    text-decoration: none;
+}
+a:visited {
+    color: rgba(10,0,0,1);
+    text-decoration: none;
+}
+a:hover {
+    color: rgba(153,153,153,1);
+}
+
+hr {
+  border:none;
+  border-top:1px dotted #000;
+  color:#fff;
+  background-color:#fff;
+  height:1px;
+  width:100%;
+  margin: 3px 0px 3px 0px;
+}
+
+h1.nav {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 26px; 
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 0px;
+    margin: 0px;
+}
+
+h2.nav {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 16px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.02em;  
+    line-height: 1.1em;
+    padding: 0 0 0 3px;
+}
+
+h3.nav {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(180,180,180,1);  
+    font-size: 12px;
+    font-weight: normal; 
+    letter-spacing: 0.06em;
+}
+
+h4.nav {
+    font-family: 'Roboto', sans-serif;  
+    color: rgba(18,18,18,1);
+    font-size: 14px;
+    font-weight: 700; 
+    letter-spacing: 0.02em;  
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 24px; 
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 0px;
+    margin: 0px;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 16px; 
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding-top: 10px;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 16px; 
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+}
+
+h1.content {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 24px; 
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 0px;
+    margin: 0px;
+}
+
+h2.content {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(18,18,18,1);
+    font-size: 20px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding-top: 10px;
+}
+
+h3.content {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(55,55,55,1);
+    font-size: 18px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 0 0 0 10px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;  
+    color: rgba(102,102,102,1);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    line-height: 1.6em;
+}
+
+ul.index {
+    overflow: hidden;
+    margin-top: -1em;
+}
+
+ul li {
+    font-family: 'Roboto', sans-serif;  
+    color: rgba(102,102,102,1);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    line-height: 1.6em;
+    margin: 10px 0;
+}
+
+ul li.talk-title {
+    font-family: 'Roboto', sans-serif;  
+    color: rgba(102,102,102,1);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    line-height: 1.6em;
+    margin: 20px 0 10px 0;
+}
+
+ul ul {
+    padding-left: 1.5em;
+}
+
+ul ul li.talk {
+    margin: 2px 0 4px 0;
+    list-style: none;
+    border-left: 5px solid;
+    border-color: #CCA08A;
+    padding-left: 15px;
+}
+
+ul ul li.presentation {
+    margin: 2px 0 4px 0;
+    list-style: none;
+    border-left: 5px solid;
+    border-color: #785A93;
+    padding-left: 15px;
+}
+
+ul li.paper {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(56,80,150,1);
+    list-style-type: none;
+    font-size: 17px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 5px 0 0 0;
+}
+
+ul li.paper-desc {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(102,102,102,1);
+    list-style-type: none;
+    font-size: 15px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 0 0 5px 30px;
+}
+
+ul li.paper::before {
+    content: '\2022';      /* Unicode for • character */
+    position: absolute;
+    left: 1.3em;          /* Adjust this value so that it appears where you want. */
+}
+
+ul li.news {
+    font-family: 'Roboto', sans-serif;    
+    color: rgba(102,102,102,1);
+    list-style-type: none;
+    font-size: 15px; 
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;  
+    line-height: 1.2em;
+    padding: 2px 0 0 0px;
+}
+
+ul li.news::before {
+    content: '\2022';      /* Unicode for • character */
+    position: relative;
+    left: -1.5em;          /* Adjust this value so that it appears where you want. */
+}
+
+a.recentpaper:link {
+    color: rgba(56,80,150,1);
+    text-decoration: none;
+}
+
+a.recentpaper:visited {
+    color: rgba(56,80,150,1);
+    text-decoration: none;
+}
+
+a.recentpaper:hover {
+    color: rgba(96,120,190,1);
+    text-decoration: none;
+}
+
+a.paper {
+    background-color: #97E5C1;
+}
+
+a.slides {
+    background-color: #F2CF9F;
+}
+
+a.talk-slides {
+    background-color: #CCA08A;
+}
+
+a.presentation-slides {
+    background-color: #785A93;
+}
+
+ul.icons {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.icons li {
+    margin: 0 0 10px 0;
+}
+
+.floating-box-left {
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    margin: 0;
+    vertical-align: top;
+}
+
+.floating-box-right {
+    display: inline-block;
+    width: 300px;
+    height: 25px;
+    margin-left: 1em;
+}
+
+
+/* NORMAL SCREEN SIZE */
+@media screen and (min-width: 701px){
+    
+    /*This is our main wrapping element, it's made 100vh high to ensure it is always the correct size and then moved into place and padded with negative margin and padding*/
+    .Container {
+        display: flex;
+        overflow: hidden;
+        height: 100vh;
+        width: 100%;
+        margin-top: 0px;
+        padding-top: 0px;
+        position: fixed;
+        backface-visibility: hidden;
+        will-change: overflow;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
+    WebKit inertia scrolling is being added here for any present/future devices that are able to make use of it.
+    */
+    .Left {
+        overflow-y: hidden;
+        height: auto;
+        padding: .5rem;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+    }
+    .Middle {
+        overflow: auto;
+        height: auto;
+        padding: .5rem;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+    }
+
+    /*  Left and Right are set sizes while the Middle is set to flex one so it occupies all remaining space. This could be set as a width too if prefereable, perhaps using calc.*/
+    .Left {
+        width: 16rem;
+        padding: 30px;
+    }
+
+    .Middle {
+        flex: 1;
+        width:100%;
+        padding: 30px;
+    }
+
+    .Middle-home {
+        flex: 1;
+        float:left;
+        padding: 30px;
+        overflow:scroll
+    }
+
+    .Middle-home-upper {
+        position: relative;
+        min-height: 300px;
+        max-height: 100%;
+    }
+
+    .Middle-home-lower {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .Container .Middle-home .text {
+        height: auto;
+    }
+
+    .Container .Middle-home .text:before {
+        content: ' ';
+        display: table;
+        width: 5em;
+    }
+
+    .Container .Middle-home-upper .image img {
+        width: 225px;
+        height: auto;
+        float: left;
+        padding: 20px 20px 10px 0px;
+    }
+}
+
+
+/* COMPACT SCREEN SIZE */
+@media screen and (max-width: 700px){
+
+    /*This is our main wrapping element, it's made 100vh high to ensure it is always the correct size and then moved into place and padded with negative margin and padding*/
+    .Container {
+        overflow-y: scroll;
+        height: 100vh;
+        width: 100%;
+        margin-top: 0px;
+        padding-top: 0px;
+        position: fixed;
+        width: 100%;
+        max-width: 700px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .Left {
+        overflow-y: hidden;
+        height: auto;
+        padding: 30px;
+    }
+    .Middle, .Middle-home {
+        overflow-y: hidden;
+        height: auto;
+        padding: 30px;
+    }
+
+    .Container .Middle .text, .Container .Middle-home .text {
+        width: 100%;
+        height: auto;
+    }
+
+    .Container .Middle .image, .Container .Middle-home .image {
+        display: none;
+    }
+
+    ul li.paper::before {
+    content: '\2022';      /* Unicode for • character */
+    position: absolute;
+    left: 3.1em;          /* Adjust this value so that it appears where you want. */
+
+}
+
+}
