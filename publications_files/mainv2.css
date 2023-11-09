@@ -344,7 +344,7 @@ ul.icons li {
 
     /*  Left and Right are set sizes while the Middle is set to flex one so it occupies all remaining space. This could be set as a width too if prefereable, perhaps using calc.*/
     .Left {
-        width: 16rem;
+        width: 24rem;
         padding: 30px;
     }
 
