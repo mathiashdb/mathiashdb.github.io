@@ -36,7 +36,7 @@ fi
 # Build meta line (you can adjust punctuation / bullets as you like)
 META_LINE="Start: $START_YEAR"
 if [[ -n "$PROJECT_TEXT" ]]; then
-  META_LINE+=" · Project: $PROJECT_TEXT"
+  META_LINE+=" · $PROJECT_TEXT"
 fi
 if [[ -n "$COSUP_TEXT" ]]; then
   META_LINE+=" · Co-supervised with $COSUP_TEXT"
