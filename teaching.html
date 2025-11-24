@@ -12,6 +12,109 @@
         <link rel="stylesheet" href="index_files/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link href="index_files/css.css" rel="stylesheet">
 	<meta name="google-site-verification" content="_KH-p71nZffLu0IbnxfE_Vmqx0rOwxnGW8XJXsGJ83k">
+
+    <!-- Simple styles for PhD cards -->
+<style>
+
+.master-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  padding: 0;
+}
+
+.master-card {
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.master-name {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.05rem;
+}
+
+.master-topic {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.master-meta {
+  margin: 0.6rem 0 0 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+
+.phd-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.5rem;
+  margin: 1rem 0 2rem;
+  padding: 0;
+}
+
+.phd-card {
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;   /* stack main row + meta vertically */
+  gap: 0.75rem;
+}
+
+.phd-main {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.phd-media {
+  flex-shrink: 0;
+}
+
+.phd-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;       /* set to 0 if you want sharp corners */
+  object-fit: cover;
+  display: block;
+}
+
+.phd-content {
+  flex: 1;
+}
+
+.phd-name {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.1rem;
+}
+
+.phd-topic {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.phd-meta {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+
+</style>
+
     </head>
     <body>
     <div class="Container">
@@ -22,11 +125,11 @@
                 <br>
                 <hr>
                 <br>
-                <h2 class="nav"><a href="http://mathiashdb.github.io/index.html">About</a></h2>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/index.html">About Me</a></h2>
                 <!--<h2 class="nav"><a href="research.html">Research</a></h2>-->
                 <h2 class="nav"><a href="http://mathiashdb.github.io/publications.html">Publications</a></h2>
                 <!--<h2 class="nav"><a href="http://mathiashdb.github.io/presentations.html">Talks</a></h2>-->
-		<h2 class="nav"><a href="http://mathiashdb.github.io/teaching.html">Research Group</a></h2>
+		<h2 class="nav"><a href="http://mathiashdb.github.io/teaching.html">Research Team</a></h2>
                 <h2 class="nav"><a href="http://mathiashdb.github.io/contact.html">Contact</a></h2>
                 <br>
                 <hr>
@@ -35,94 +138,84 @@
 
         <div class="Middle">
 
-            <h1>Open Positions</h1>
 
-	    <div class="text">
-	      <p>
-		
-		I'm open to supervising PhDs and Postdocs at ITS or in cooperation with other relevant departments at UiO (eg., IFI, physics, or mathematics).
-		I'm also available to supervise master thesis projects from students at UiO or other universities that have exchange agreements with UiO.
+<h2>My Research Team</h2>
 
-		
-	      </p>
-	    </div>
-	    
-            <h2>Available</h2>
+<p>
+I'm extremely lucky to work with an enthusiastic, multidisciplinary group of researchers in a wide variety of control theory and application topics. Here they are, listed in order of when they started their PhD.
+</p>
 
-	    <div class="text">
-	      <p>
-		Links to open positions  will appear below under their respective category. 
-	      </p>
-	      
-	       <p>
-		I'm looking for up to 5 master's students at ITS starting in 2025 in the cybernetics program to join my group. The open topics are below. Please note that all theses will require students to take TEK4090 <strong>in their first semester</strong>.
-	      </p>
-	    </div>
+<!-- <div class="phd-grid"> -->
 
-	    
-            <ul>
-	      <li><strong>Optimization</strong></li>
-	       <ul>
-		 <!--<li> <a href="https://sirop.org/app/5dcd450a-0cee-461d-a7d7-9f4e6afddcd5?_k=eiBbwJOkQEPpkLoi">Optimal stock options trading strategies</a>.   <strong>Master's Thesis.</strong>  </li> -->
-	       </ul>
-	      <li><strong>Distributed aerospace systems</strong></li>
-	        <ul>
-		 <!--<li> <strong>1-3 Postdoc Positions:</strong> <a href="https://www.jobbnorge.no/en/available-jobs/job/255243/postdoctoral-research-fellows-in-space-sensors-and-systems">Guidance, navigation, and control of satellites; satellite instrumentation; real-time optimal control; or, related topics.</a>  <span style="font-style: italic;"> Co-supervised with <a href="https://censss.no">CENSSS</a>.</span> </li> -->
-		 <li> <a href="https://www.mn.uio.no/its/studier/masteroppgaver/masters_projects_CAS/multi-agent-systems.html">Multi-agent coordination of robotic systems: Robot swarms and more!</a>.   <strong>Master's Thesis.</strong> </li>
-		</ul>
-	      <li><strong>Building control</strong></li>
-	      <ul>
-		<li> <a href="https://www.jobbnorge.no/en/available-jobs/job/283272/phd-research-fellow-in-supervisory-control-for-the-power-grid-of-a-telescope">Supervisory Control for the Power Grid of a Telescope</a>.   <strong>PhD Position.</strong>  </li> 
-		<li> <a href="https://www.mn.uio.no/its/studier/masteroppgaver/masters_projects_CAS/smart-cities.html">From Smart Buildings to Smart Cities, and Everything in Between</a>.   <strong>Master's Thesis.</strong>  </li> 
-	      <li> <a href="https://www.mn.uio.no/its/studier/masteroppgaver/masters_projects_CAS/hydroponics-2025.html">Control and Automation for Hydroponic Vertical Farming and Greenhouses</a>.   <strong>Master's Thesis.</strong> </li>
-	      </ul>
-              <li><strong>Networked systems</strong></li>
-	      <li><strong>Data-driven control</strong></li>
-	      <ul>		 
-	      <li> <a href="https://www.mn.uio.no/its/studier/masteroppgaver/masters_projects_CAS/fusion_reactors.html">Iterative learning control for fusion reactors</a>.   <strong>Master's Thesis.</strong> </li>
-		</ul>
-<!--	      <li> <a href="https://sirop.org/app/980c3263-c4e8-4101-ac2f-466a43a3d080?_k=3cjRviYEbhjeW8uX">Distributed Dual Quaternion Extended Kalman Filters for Spacecraft Attitude Control</a>.   <strong>Master's Thesis.</strong> <span style="font-style: italic;"> Co-supervised with Andrea Iannelli.</span> </li> -->
-            </ul>
+<div id="phd-cards" class="phd-grid"></div>
 
-            <h2>Currently Running</h2>
+<script>
+  fetch("https://mathiashdb.github.io/phd-cards.html")
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("phd-cards").innerHTML =
+        `<div class="phd-grid">` + html + `</div>`;
+    });
+</script>
+  
 
-            <ul>
-	    
-	    </ul>
+<h2>Master Students</h2>
 
-            <h2>Past Projects</h2>
+<p>
+I have a lively group of master's students working in control, optimization, and game theory applied to buildings and power systems, multi-agent robotics, and vertical farming.
+</p>
 
-            <ul>
-	      <li><strong>Emilie  Eilertsen</strong>. OpenSpace -- creating an open user interface framework for spacecraft interaction.  <span style="font-style: italic;">Masters's Diploma Project. External advisor.</span></li> 
-	      <li><strong>Silje Larsen</strong>. SAR-Swarm: User interface design for remote operation of drone swarms in search and rescue.  <span style="font-style: italic;">Masters's Diploma Project. External advisor.</span></li> 
-	      <li><strong>Bernhard Seip</strong>. Optimising Efficiency of Space Heating Through Reinforcement Learning with Model Predictions.  <span style="font-style: italic;">Masters's Thesis.</span></li> 
-	      <li><strong>Martin  Myrseth</strong>. Developing a cost-efficient smart control system utilizing Model Predictive Control to reduce electricity prices.  <span style="font-style: italic;">Master's Thesis.</span></li> 
-	      <li><strong>Marlais Luthi</strong>. Topology identification of the Walenstadt electrical grid.  <span style="font-style: italic;">Bachelor's Thesis. Co-supervised with Keith Moffat and Saverio Bolognani.</span></li> 
-	      <li><strong>Yu Tang</strong>. Matrix completion for education content recommendation algorithms.  <span style="font-style: italic;">Semester project. Co-supervised with Matilde Gargiani and Alberto Padoan.</span></li>
-	      <li><strong>Gianni Gugolz</strong>. Robust model-predictive control for urban dynamic traffic.  <span style="font-style: italic;">Semester project. Co-supervised with Carlo Cenedese.</span></li>
-	      <li><strong>Francesco Ricca</strong>. Data-enabled predictive control of energy hubs with battery degradation.  <span style="font-style: italic;">Semester project. Co-supervised with Varsha Behrunani and Marta Zagorowska.</span></li>
-	      <li><strong>Jan Erikkson</strong>. Performance of nonlinear data-driven control on smart buildings.  <span style="font-style: italic;">Semester project. Co-supervised with Marta Zagorowska.</span></li>
-	      <li><strong>Serafin Herger</strong>. Game-theoretic demand-side management for smart buildings.  <span style="font-style: italic;">Master's thesis. Co-supervised with Giuseppe Belgioioso and Dominic Liao-McPherson.</span></li>
-	      <li><strong>Sisinio Dargent de Vicente</strong>. Spine curvature modeling under different gravity conditions.  <span style="font-style: italic;">Semester project. Co-supervised with Amber Srivastava.</span></li>
-	      <li><strong>Dylan Jaoui</strong>. Robust model-predictive control for the trading of stock options.  <span style="font-style: italic;">Master's thesis. Co-supervised with Francesco Micheli.</span></li>
-	      <li><strong>Charles Stejskal</strong>. Optimal transport for spacecraft swarms.  <span style="font-style: italic;">Semester project. Co-supervised with Dominic Liao-McPherson.</span></li>
-	      <li><strong>Danilo Dordevic</strong>. Optimal trading of stock options.  <span style="font-style: italic;">Semester project. Co-supervised with Erik Miehling.</span></li>
-	      <li><strong>Lukas Hofer</strong>. Automatic mass balancing system for a cubesat teststand.  <span style="font-style: italic;">Bachelor's thesis.</span></li>      
-	      <li><strong>Nicolas Pelzmann</strong>. Suboptimal distributed model predictive control for smart buildings.  <span style="font-style: italic;">Master's thesis. Co-supervised with Giuseppe Belegioioso and Dominic Liao-McPherson.</span></li>
-	      <li><strong>Nivethan Yogajarah</strong>. Gaussian Process State-Space models for identification and control of dynamical systems.  <span style="font-style: italic;">Master's thesis. Co-supervised with Francesco Micheli.</span></li>
-	      <li><strong>Lorin Muelebach</strong>. Distributed indentification and control for building thermal management.  <span style="font-style: italic;">Master's thesis. Co-supervised with Francesco Micheli, Felix Buenning, and Marta Fochesato..</span></li>		      
-	      <li><strong>Jonas Binz</strong>. Distributed dual quaternion extended Kalman filters for spacecraft attitude control.  <span style="font-style: italic;">Master's thesis. Co-supervised with Andrea Iannelli.</span></li>
-	      <li><strong>Felix Wegner</strong>. Digging DeeP: A data-enabled predictive control approach for a robotic excavator.  <span style="font-style: italic;">Master's thesis. Co-supervised with Jeremy Coulson.</span></li>
 
-	      <li><strong>Nicolas Lefebure</strong>. Distributed model predictive control for buildings.  <span style="font-style: italic;">Master's thesis. Co-supervised with Felix Buenning and Mohammad Khosravi.</span></li>
-	      <li><strong>Dimitrios Gkouletsos</strong>. Ergodic trajectory planning for multi-agent systems.  <span style="font-style: italic;">Semester project. Co-supervised with Andrea Iannelli.</span></li>
-	      <li><strong>Andri Boesch</strong>. Modelling and control of the life support system of a lunar habitat.  <span style="font-style: italic;">Master's thesis. Co-supervised with Francesco Micheli.</span></li>
-	      <li><strong>Adrian Schalbetter</strong>. Input-convex neural networks for building control.  <span style="font-style: italic;">Master's thesis. Co-supervised with Felix Buenning and Phillip Heer.</span></li>
-	      <li><strong>Cédric Uschatz</strong>. A time-varying extension of the French-DeGroot model with decaying interpersonal influences.  <span style="font-style: italic;">Master's thesis. Co-supervised with Wenjun Mei and Andrea Iannelli.</span></li>
-	      <li><strong>Stefano Gioia</strong>. Distributed data-driven control.  <span style="font-style: italic;">Master's thesis.</span></li>
-              <li><strong>Julian Schwarz</strong>. Data-enabled predictive control of buildings and energy hubs.  <span style="font-style: italic;">Semester project. Co-supervised with Francesco Micheli.</span></li>
-	      
-            </ul>
+<div id="current-msc" class="master-list"></div>
+
+
+<h2>Past Master Projects</h2>
+<div id="past-msc" class="master-list"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function loadInto(id, url) {
+      fetch(url)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('HTTP error ' + response.status);
+          }
+          return response.text();
+        })
+        .then(function (html) {
+          var el = document.getElementById(id);
+          if (el) {
+            el.innerHTML = html;
+          }
+        })
+        .catch(function (err) {
+          console.error('Error loading ' + url + ':', err);
+        });
+    }
+
+    loadInto('current-msc', 'current-msc.html');
+    loadInto('past-msc', 'https://mathiashdb.github.io/past-msc.html');
+  });
+</script>
+
+<script>
+  fetch("https://mathiashdb.github.io/current-msc.html")
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("current-msc").innerHTML =
+        `<div class="master-list">` + html + `</div>`;
+    });
+</script>
+
+<script>
+  fetch("https://mathiashdb.github.io/past-msc.html")
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("past-msc").innerHTML =
+        `<div class="master-list">` + html + `</div>`;
+    });
+</script>
+
 
             <br>
             <hr>
