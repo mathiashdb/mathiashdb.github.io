@@ -1,0 +1,269 @@
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage{ifthen}
+% include in prep or not
+\newcounter{inPrepFlag}
+\setcounter{inPrepFlag}{0}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{lscape}
+
+\usepackage{floatrow}
+\DeclareFloatFont{small}{\small}% "scriptsize" is defined by floatrow, "tiny" not
+\floatsetup[table]{font=small}
+
+% \usepackage[sc]{titlesec}
+\usepackage[sorting=none, defernumbers=true, backend=biber, style=ieee, datamodel=student,maxcitenames=50,maxnames=50]{biblatex}
+
+\renewbibmacro{in:}{}
+\addbibresource{1-journal-papers.bib} 
+\addbibresource{2-conference-papers.bib}
+\addbibresource{3-nonpeer-conf.bib}
+\addbibresource{4-inprep.bib}
+\addbibresource{5-under-review.bib}
+\addbibresource{6-theses.bib}
+\addbibresource{7-talks.bib} 
+\addbibresource{8-press.bib}
+\addbibresource{9-mentor.bib}
+\addbibresource{10-abstracts.bib}
+\addbibresource{11-phd.bib}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+%\usepackage[T1]{fontenc}
+\let\cedilla\c
+\let\turki\i
+
+%newcode
+
+
+\input{ref-format.tex}
+
+
+
+
+
+
+
+\usepackage[turkish,english]{babel}
+
+
+
+
+%%% EVENTUALLY MOVE THIS INTO THE DBX FILE BUT BE CAREFUL AS ONE OF THEM WILL START WORKING
+
+
+% custom fields for invited talks
+\DeclareBibliographyDriver{invitedtalk}{%
+\usebibmacro{author}%
+\setunit{\labelnamepunct}\newblock
+\printfield{title}%
+\newunit\newblock
+\printlist{publisher}%
+\newunit
+\printfield{booktitle}%
+\newunit
+\printlist{location}%
+\newunit
+\printdate%
+\newunit
+\printfield{pages}%
+{\space}
+\usebibmacro{finentry}
+ }
+
+\DeclareFieldFormat[invitedtalk]{title}{{``{#1}''}}
+\DeclareListFormat[invitedtalk]{publisher}{{\mkbibbold{#1}}}
+%\DeclareFieldFormat[invitedtalk]{number}{\bibstring{number}~#1}% 
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+\DeclareFieldFormat[invitedtalk]{title}{{``{#1}''}}
+\DeclareListFormat[invitedtalk]{publisher}{{\mkbibbold{#1}}}
+%\DeclareFieldFormat[invitedtalk]{number}{\bibstring{number}~#1}% 
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+% There is a bug in some versions of biblatex that causes the @invitedtalk driver to be
+% converted into a blank thing: ``@''. Here is the bibliography driver for such a blank
+\DeclareBibliographyDriver{}{%
+\usebibmacro{author}%
+\setunit{\labelnamepunct}\newblock
+\printfield{title}%
+\newunit\newblock
+\printlist{publisher}%
+\newunit
+\printfield{booktitle}%
+\newunit
+\printlist{location}%
+\newunit
+\printdate%
+\newunit
+\printfield{pages}%
+{\space}
+\usebibmacro{finentry}
+ }
+
+\DeclareFieldFormat{title}{{``{#1}''}}
+\DeclareListFormat{publisher}{{\mkbibbold{#1}}}
+%\DeclareFieldFormat[invitedtalk]{number}{\bibstring{number}~#1}% 
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+
+% Identifying information
+\newcommand{\Title}{Curriculum Vit\ae}
+\newcommand{\FirstName}{Mathias}
+\newcommand{\LastName}{Hudoba de Badyn}
+\newcommand{\Initials}{MHdB}
+\newcommand{\MyName}{\FirstName\ \LastName}
+\newcommand{\MyRole}{Associate Professor}
+\newcommand{\Tian}{\textbf{\LastName, \Initials.}}  % For citations
+\newcommand{\Email}{mathias.hudoba@its.uio.no}
+\newcommand{\Website}{https://mathiashdb.github.io/}
+\newcommand{\PhoneUS}{+1-(206)-335-6689}
+\newcommand{\PhoneEU}{+47-929-52062}
+\newcommand{\Affiliation}{
+  Department of Technology Systems, University of Oslo
+}
+\newcommand{\Address}{
+    Gunnar Randers vei 19, 2007 Kjeller, Norway
+}
+
+% Control the font size
+\usepackage{anyfontsize}
+
+% Useful macros
+\newcommand{\DOI}[1]{doi:\href{https://doi.org/#1}{#1}}
+\newcommand{\invited}{\textbf{[invited]}}
+
+% Define command to insert month name and year as date
+\usepackage{datetime}
+\newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
+
+% Set the page margins
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+% Increase the line spacing
+%\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{1.4}
+\setlength{\parindent}{0pt} % no indent for paragraph
+
+% Remove space between items in itemize and enumerate
+\usepackage{enumitem}
+\setlist{itemsep=0.2em}
+
+% Use custom colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Set fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{
+    \itshape
+    \fontsize{10pt}{12pt}\selectfont
+    \MyName
+    \hspace{0.2cm} -- \hspace{0.2cm}
+    \Title
+    \hspace{0.2cm} -- \hspace{0.2cm}
+    \monthyear\today
+}
+\rhead{}
+\cfoot{\fontsize{10pt}{0}\selectfont \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+%-----------------------------------------------------------
+\newlength{\outerbordwidth}
+\setlength{\outerbordwidth}{1pt}  % Width of border outside of title bars
+\definecolor{shadecolor}{gray}{0.75}  % Outer background color of title bars (0 = black, 1 = white)
+\definecolor{shadecolorB}{gray}{0.93}  % Inner background color of title bars
+%-----------------------------------------------------------
+
+\usepackage{framed}
+\newcommand{\resheading}[1]{\vspace{8pt}
+  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
+    \begin{shaded}
+\setlength{\fboxsep}{1pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\textsc{\rmfamily{\mbox{~}\makebox[6.245in][l]{\large #1} \vphantom{p\^{E}}}}}}}
+    \end{shaded}
+  }\vspace{-10pt}
+}
+
+% Metadata for the PDF output and control of hyperlinks
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{ % document metadata
+    pdftitle = {\MyName\ - \Title},
+    pdfauthor = {\MyName},
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=MidnightBlue,
+}
+
+\definecolor{MarkerColour}{HTML}{B6073F}
+\newcommand{\makefield}[2]{\makebox[1.5em]{\color{MarkerColour!80!black}#1} #2}
+
+% numbering items in reversed orders
+\usepackage{etaremune}
+
+\makeatletter
+\def\ifGm@preamble#1{\@firstofone}
+\appto\restoregeometry{%
+  \pdfpagewidth=\paperwidth
+  \pdfpageheight=\paperheight}
+\apptocmd\newgeometry{%
+  \pdfpagewidth=\paperwidth
+  \pdfpageheight=\paperheight}{}{}
+\makeatother
+
+
+\begin{document}
+\nocite{*}
+
+% No header for the first page
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HEADER
+\begin{center}
+    {\fontsize{16pt}{0}\selectfont \MyName}
+    \\[0.5cm]
+    {\fontsize{12pt}{0}\selectfont \MyRole}
+    \\[0.3cm]
+    {\fontsize{10pt}{0}\selectfont
+        \Affiliation
+        \\[0.2cm]
+        \Address
+        \\[0.08cm]
+%       \makefield{\faEnvelopeO}{\href{mailto:\Email}{\texttt{\Email}}}
+%       \, | \,
+%       \makefield{\faGlobe}{\url{\Website}}
+        Email: \href{mailto:\Email}{\texttt{\Email}}
+        \, | \,
+        Website: \url{\Website}
+        \\Phone: \textcolor{MidnightBlue}{\PhoneUS} or \textcolor{MidnightBlue}{\PhoneEU}
+    }
+\end{center}
+
+
+
+\input{education}
+\input{interests}
+\newpage
+\newgeometry{,hmargin=0.5in,vmargin=1in,landscape}
+  \section*{Grants \& Funding}
+  \input{grants_table.tex}
+  \restoregeometry
+\newpage
+\input{publications}
+\input{awards}
+
+\input{talks}
+\newpage
+\input{press}
+\input{employment}
+\vspace{-0.5cm}
+\input{activities}
+
+\input{skills}
+%\newpage
+\input{referees}
+
+\end{document}

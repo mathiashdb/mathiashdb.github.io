@@ -1,0 +1,41 @@
+% AGU style: https://publications.agu.org/agu-grammar-and-style-guide/
+\newcommand{\Revision}{\textit{under revision}}
+\newcommand{\CS}{*} % corresponding author
+\newcommand{\CF}{\textsuperscript{\#}} % co-first author
+
+\resheading{Publications}
+
+\newrefcontext[labelprefix=UR]
+\printbibliography[title={Under Review}, type=underreview, resetnumbers=true]
+
+\ifnum\value{inPrepFlag}=1 %
+ \newrefcontext[labelprefix=IP]
+ \printbibliography[title={In Prep}, type=inprep, resetnumbers=true]
+\else
+\fi
+
+% order journal papers as desired
+\nocite{fes_journal,BuildingML,NicolasAE,DimitrisRAL,ECC1,HudobadeBadynb,HudobadeBadynbb,Matheney2019,HudobadeBadyn2016a,HudobadeBadyn2015b,Owen2013}
+\newrefcontext[labelprefix=J]
+\printbibliography[title={Journal Articles}, type=articlearxiv, resetnumbers=true]
+
+% order conference papers as desired
+\nocite{cisbat,pelzifac,tylercollab,atic2021,yolo,Giuseppe,l4dc1,HudobadeBadynnbb,HudobadeBadyn2019ab,HudobadeBadyn2019a,Hudobadebadyn2018cdc,Hudobadebadyn2017,Alemzadeh2017,HudobadebadynFillt2017,Hudobadebadyn2016,HudobaDeBadyn2015a}
+\newrefcontext[labelprefix=C]
+\printbibliography[title={Peer-Reviewed Conference Papers}, type=inproceedings, resetnumbers=true]
+
+\newrefcontext[labelprefix=OC]
+\printbibliography[title={Other Conference Papers}, type=conf, resetnumbers=true]
+
+% \newrefcontext[labelprefix=CA]
+% \printbibliography[title={Conference Abstracts}, type=confabs, resetnumbers=true]
+
+\newrefcontext[labelprefix=TH]
+\printbibliography[title={Theses}, type=thesis, resetnumbers=true]
+
+
+
+
+%%% Local Variables:
+%%% TeX-master: "cv-hudoba-de-badyn.tex"
+%%% End:

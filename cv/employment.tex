@@ -1,0 +1,206 @@
+\resheading{Teaching}
+\section*{Mentorship}
+\newlength{\namelength}
+\newlength{\titlelength}
+\setlength{\namelength}{0.24\textwidth}
+\setlength{\titlelength}{0.76\textwidth}
+
+
+% put an order on the master's students in terms of start date so it doesn't look like I'm prioritizing those that published something
+
+% PhDs
+\nocite{antsi, sagau, nire, marvir, joag}
+
+% if the reverse counting thing fails, it's likely because I'm citing a paper/thesis that doesn't exist in the bib files anymore
+\nocite{shahali,sanhel,tobbor, marknu, henjo, silje, emi, bernseip, martd, martd,patb, marlais, yu, gugolz, ricca, jan, serafin,sisinio,danilo,jaoui,LukasHofer,Charles1,NicholasP,Nivethan,Jonas,Lorin,Omar,Dimitrios,Felix,Nicolas,Adrian,Cedric,Andri,Stefano,Julian}
+
+%\nocite{Julian,Stefano,Andri,Cedric,Adrian,Nicolas,Felix,Dimitrios,Omar,Lorin,Jonas}
+
+% have two tables: one for cv with `in prep' section, and one without
+\ifnum\value{inPrepFlag}=1 %
+\begin{center}
+    \begin{tabular}{|l||c|c|c|c|c|c|}\hline
+      \textbf{Project} &\cite{NicholasP} &\cite{Jonas} & \cite{Adrian} & \cite{Omar} & \cite{Dimitrios} & \cite{Nicolas} & \cite{Andri} \\ \hline
+      \textbf{Publication}& \cite{pelzifac} &\cite{Binzpaper} & \cite{l4dc1,BuildingML} & \cite{ECC1} & \cite{DimitrisRAL} & \cite{NicolasAE} & \cite{AndriLunar}\\\hline
+    \end{tabular}
+\end{center}
+\else %
+% put `in prep' for everything that is in prep
+\begin{center}
+    \begin{tabular}{|l||c|c|c|c|c|c|c|c|}\hline
+      \textbf{Project}     & \cite{Andri} & \cite{Adrian}           & \cite{Nicolas}   & \cite{Dimitrios}   & \cite{Omar} & \cite{Jonas}     & \cite{NicholasP}      & \cite{ricca}   \\ \hline
+      \textbf{Publication} & In prep      & \cite{l4dc1,BuildingML} & \cite{NicolasAE} & \cite{DimitrisRAL} & \cite{ECC1} & \cite{ddqekf_journal}          & \cite{pelzifac}       & \cite{cisbat} \\\hline
+    \end{tabular}
+\end{center}
+\fi
+
+% supervised project biber outputs
+
+\newrefcontext[labelprefix=PhD]
+\printbibliography[title={PhD Supervision}, type=phdstudent, resetnumbers=true]
+
+\newrefcontext[labelprefix=MT]
+\printbibliography[title={Supervised Master's Theses \& Projects}, type=masterstudent, resetnumbers=true]
+
+
+
+\newrefcontext[labelprefix=UG]
+\printbibliography[title={Supervised Undergraduate Capstones \& Projects},type=undergraduate, resetnumbers=true]
+
+
+%old tables are at the bottom of this file
+
+
+\renewcommand{\arraystretch}{1}
+\section*{Coursework}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  02/2023 -- 06/2023 & \textbf{Co-Instructor} \newline
+                       Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Graduate) Building Control
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  09/2022 -- 12/2022 & \textbf{Co-Instructor (with Roy S. Smith)} \newline
+                       Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Graduate) System Identification
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  02/2020 -- 06/2020 & \textbf{Co-Instructor (with Florian D\"{o}rfler)} \newline
+                       Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Graduate) Distributed Control
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  09/2020 -- 12/2020 & \textbf{Teaching Assistant} \\
+  09/2021 -- 12/2021 & Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Graduate) System Identification
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  02/2020 -- 06/2020 & \textbf{Head Teaching Assistant} \newline
+                       Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Graduate) Advanced Topics in Optimization
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+  01/2020 -- 02/2020 & \textbf{Examiner} \newline
+                       Department of Info. Tech. \& Electrical Engineering \newline
+                       ETH, Z\"{u}rich \newline
+                       (Undergraduate) Signals \& Systems II 
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+09/2015 -- 06/2016 & \textbf{Graduate Teaching Assistant}\newline
+                           William E. Boeing Department of Aeronautics and Astronautics\newline
+                           University of Washington, Seattle, WA, USA\newline
+                              (Undergraduate) Sensors and Actuators \newline
+                              (Graduate) Linear Quadratic Control and Applications \newline
+                              (Graduate) Networked Dynamical Systems 
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+01/2012 -- 05/2013 & \textbf{Undergraduate Teaching Assistant}\newline
+                           Department of Mathematics\newline
+                           University of British Columbia, Vancouver, BC, Canada\newline
+                              (Undergraduate) Differential calculus \newline
+                              (Undergraduate) Integral calculus 
+\end{tabular}
+\resheading{Research}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+07/15/2019 -- present & \textbf{Postdoctoral Scholar}\newline
+                        Automatic Control Laboratory \newline
+                        ETH, Z\"{u}rich, Switzerland \newline
+                        Supervisors: Profs. John Lygeros \& Roy Smith
+                        \begin{itemize}
+                          \item Developed novel estimators for distributed aerospace systems \newline and life support systems for extraterrestrial habitats
+                          \item Derived optimal control algorithms using optimal transport \newline for discrete-time stochastic linear systems
+                          \item Developed distributed control and data-driven methods for \newline smart buildings, with hardware implementations
+                          \item Derived data-driven methods for distributed systems, such as \newline the Willems Lemma and dynamic mode decomposition
+                          \item Implemented novel data-driven control algorithms on \newline hardware testbeds, such as buildings and a robotic excavator
+                          \item Performed a large-scale study comparing data-driven control \newline with machine learning methods for smart building automation
+                          \item Introduced novel game-theoretic equilibrium seeking algorithms \newline and demonstrated them on smart buildings
+                        \end{itemize}
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+06/01/2016 -- 06/15/2019 & \textbf{Research Assistant} \newline
+                        William E. Boeing Department of Aeronautics and Astronautics\newline
+                        University of Washington, Seattle, WA, USA\newline
+                        {Supervisor: Prof. Mehran Mesbahi} 
+                        \begin{itemize}
+                          \item Developed a method utilizing a decomposition of series-parallel\newline networks for computing control measures efficiently
+                          \item Developed a Kalman filter algorithm for the attitude \newline determination and control system for a cubesat
+                          \item Used optimal mass transport to design open-loop density \newline control algorithms for vehicle formations
+                          \item Worked out effects of symmetry and structural balance on the \newline control of systems on signed networks
+                          \item Designed a fast algorithm for Kalman filtering on \newline high-dimensional data on a sensor network
+                        \end{itemize}
+\end{tabular}
+\begin{tabular}{p{0.26\textwidth} p{0.74\textwidth}}
+09/01/2014 -- 09/01/2015 & \textbf{Research Assistant} \newline
+                           William E. Boeing Department of Aeronautics and Astronautics\newline
+                           University of Washington \newline
+                           {Supervisor: Prof. Mehran Mesbahi} 
+                           \begin{itemize}
+                             \item Developed a notion of entropy for networked systems that \newline relates spanning trees of the network to its control properties
+                             \item Designed algorithms to generate controllable  networks
+                           \end{itemize}
+\end{tabular}
+\renewcommand{\arraystretch}{1.25}
+
+% old tables
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Lorin M\"{u}lebach & \textbf{Master's Thesis (co-advised with F.~Micheli, F.~B\"{u}nning,\& M.~Forchesato)}\\
+%     \textit{ETH,Z\"{u}rich} & \textit{System Identification for Buildings}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Omar Farhat & \textbf{Master's Research Project (co-advised with Dany Jaoude)}\\
+%     \textit{American U., Beirut} & \textit{$\mathcal{H}_\infty$ Control of Edge Consensus}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Josh Ocquaye-Nortley & \textbf{Undergraduate Capstone Project}\\
+%     \textit{Ashesi U., Ghana} & \textit{Optimal Inverse Kinematics of a Quadruped Robot}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Jonas Binz & \textbf{Master's Thesis (co-advised with Andrea Iannelli)}\\
+%     \textit{ETH, Z\"{u}rich} & \textit{Distributed dual quaternion Kalman filters for attitude control}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Dimitrios Gkouletsos & \textbf{Semester Project (co-advised with Andrea Iannelli)}\\
+%     \textit{ETH, Z\"{u}rich} & \textit{Ergodic trajectory planning for multi-agent systems}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Felix Wegner & \textbf{Master's Thesis (co-advised with Jeremy Coulson)}\\
+%     \textit{ETH, Z\"{u}rich} & \textit{Digging DeeP: A data-enabled control approach for a robotic excavator}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Nicholas Lefebure & \textbf{Master's Thesis (co. with Felix B\"{u}nning \& Mohammad Khosravi)}\\
+%     \textit{EMPA/ETH, Z\"{u}rich} & \textit{Distributed model-predictive control for buildings}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     Adrian Schalbetter & \textbf{Master's Thesis (co-advised with Felix B\"{u}nning \& Philipp Heer)}\\
+%     \textit{EMPA/ETH, Z\"{u}rich} & \textit{Input convex neural networks for building control}
+% \end{tabular}\newline
+% \begin{tabular}{p{\namelength} p{\titlelength} }
+%     C\'{e}dric Uschatz & \textbf{Master's Thesis (co-advised with Wenjun Mei \& Andrea Iannelli)}\\
+%     \textit{ETH, Z\"{u}rich} & \textit{A French-DeGroot model with eventually-stubborn agents}
+% \end{tabular}\newline
+% \begin{tabular}{ p{\namelength} p{\titlelength} }
+%     Andri B\"{o}sch & \textbf{Master's Thesis (co-advised with Francesco Micheli)}  \\
+%     \textit{ETH, Z\"{u}rich} & \textit{Modelling and control of the life support system of a lunar habitat}
+% \end{tabular}\newline
+% \begin{tabular}{ p{\namelength} p{\titlelength} }
+%     Stefano Gioia & \textbf{Master's Thesis}  \\
+%     \textit{ETH, Z\"{u}rich} & \textit{Distributed data-driven control and optimization}
+% \end{tabular}\newline
+% \begin{tabular}{ p{\namelength} p{\titlelength} }
+%     Julian Schwarz & \textbf{Semester Project (co-advised with Francesco Micheli)}\\
+%     \textit{ETH, Z\"{u}rich} & \textit{Data-enabled predictive control of buildings and energy hubs}
+% \end{tabular}\newline
+
+% \textbf{2019}\newline
+% \begin{tabular}{ p{\namelength} p{\titlelength} }
+%   Shannon Mallory & \textbf{Undergraduate Reading Course} \\
+%   \textit{U. Washington} & \textit{Optimal transport --- A linear programming perspective}
+% \end{tabular}
+
+%%% Local Variables:
+%%% TeX-master: "cv-hudoba-de-badyn.tex"
+%%% End:

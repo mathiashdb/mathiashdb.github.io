@@ -1,0 +1,178 @@
+% contains all the formating for the backwards referencing. Definitions for the new reference types are in student.dbx
+
+% includes, in order,
+
+% masterstudent
+% undergraduate
+% article (for journal papers) DEPRECATED, USE articlearXiv instead
+% inproceedings (for peer-reviewed conference papers)
+% conference (for non-peer-reviewed conference papers)
+% confabs (for conference abstracts)
+% thesis
+% press
+% invitedtalk
+% inprep
+% articlearxiv (for journal papers with arXiv links)
+% phdstudent
+\AtDataInput[phdstudent]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{phdstudententrycount:\therefsection}{%
+      \csuse{phdstudententrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[phdstudent]{labelnumber}{\mkbibphdstudentdesc{#1}}
+
+\newrobustcmd*{\mkbibphdstudentdesc}[1]{%
+   \number\numexpr\csuse{phdstudententrycount:\therefsection}+1-#1\relax}
+
+
+% masterstudent
+\AtDataInput[masterstudent]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{masterstudententrycount:\therefsection}{%
+      \csuse{masterstudententrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[masterstudent]{labelnumber}{\mkbibmasterstudentdesc{#1}}
+
+\newrobustcmd*{\mkbibmasterstudentdesc}[1]{%
+   \number\numexpr\csuse{masterstudententrycount:\therefsection}+1-#1\relax}
+
+% undergraduate
+\AtDataInput[undergraduate]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{undergraduateentrycount:\therefsection}{%
+      \csuse{undergraduateentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[undergraduate]{labelnumber}{\mkbibundergraduatedesc{#1}}
+
+\newrobustcmd*{\mkbibundergraduatedesc}[1]{%
+   \number\numexpr\csuse{undergraduateentrycount:\therefsection}+1-#1\relax}
+
+
+% article (for journal papers)
+\AtDataInput[article]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{articleentrycount:\therefsection}{%
+      \csuse{articleentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[article]{labelnumber}{\mkbibarticledesc{#1}}
+
+\newrobustcmd*{\mkbibarticledesc}[1]{%
+   \number\numexpr\csuse{articleentrycount:\therefsection}+1-#1\relax}
+
+% underreview 
+\AtDataInput[underreview]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{underreviewentrycount:\therefsection}{%
+      \csuse{underreviewentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[underreview]{labelnumber}{\mkbibunderreviewdesc{#1}}
+
+\newrobustcmd*{\mkbibunderreviewdesc}[1]{%
+   \number\numexpr\csuse{underreviewentrycount:\therefsection}+1-#1\relax}
+
+% inproceedings 
+\AtDataInput[inproceedings]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{inproceedingsentrycount:\therefsection}{%
+      \csuse{inproceedingsentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[inproceedings]{labelnumber}{\mkbibinproceedingsdesc{#1}}
+
+\newrobustcmd*{\mkbibinproceedingsdesc}[1]{%
+   \number\numexpr\csuse{inproceedingsentrycount:\therefsection}+1-#1\relax}
+
+% conf (for non-peer reviewed conferences) 
+\AtDataInput[conf]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{confentrycount:\therefsection}{%
+      \csuse{confentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[conf]{labelnumber}{\mkbibconfdesc{#1}}
+
+\newrobustcmd*{\mkbibconfdesc}[1]{%
+   \number\numexpr\csuse{confentrycount:\therefsection}+1-#1\relax}
+
+% confabs (for conference abstracts) 
+\AtDataInput[confabs]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{confabsentrycount:\therefsection}{%
+      \csuse{confabsentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[confabs]{labelnumber}{\mkbibconfabsdesc{#1}}
+
+\newrobustcmd*{\mkbibconfabsdesc}[1]{%
+   \number\numexpr\csuse{confabsentrycount:\therefsection}+1-#1\relax}
+
+% thesis
+\AtDataInput[thesis]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{thesisentrycount:\therefsection}{%
+      \csuse{thesisentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[thesis]{labelnumber}{\mkbibthesisdesc{#1}}
+
+\newrobustcmd*{\mkbibthesisdesc}[1]{%
+   \number\numexpr\csuse{thesisentrycount:\therefsection}+1-#1\relax}
+
+% press
+\AtDataInput[press]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{pressentrycount:\therefsection}{%
+      \csuse{pressentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[press]{labelnumber}{\mkbibpressdesc{#1}}
+
+\newrobustcmd*{\mkbibpressdesc}[1]{%
+   \number\numexpr\csuse{pressentrycount:\therefsection}+1-#1\relax}
+
+% invitedtalk
+\AtDataInput[invitedtalk]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{invitedtalkentrycount:\therefsection}{%
+      \csuse{invitedtalkentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[invitedtalk]{labelnumber}{\mkbibinvitedtalkdesc{#1}}
+
+\newrobustcmd*{\mkbibinvitedtalkdesc}[1]{%
+   \number\numexpr\csuse{invitedtalkentrycount:\therefsection}+1-#1\relax}
+
+% inprep
+\AtDataInput[inprep]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{inprepentrycount:\therefsection}{%
+      \csuse{inprepentrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[inprep]{labelnumber}{\mkbibinprepdesc{#1}}
+
+\newrobustcmd*{\mkbibinprepdesc}[1]{%
+   \number\numexpr\csuse{inprepentrycount:\therefsection}+1-#1\relax}
+
+% articlearxiv (for journal papers)
+\AtDataInput[articlearxiv]{%
+ \xifinlistcs{\thefield{entrykey}}{entrylist:\therefsection}{}{%
+  \listcsxadd{entrylist:\therefsection}{\thefield{entrykey}}%
+  \csnumgdef{articlearxiventrycount:\therefsection}{%
+      \csuse{articlearxiventrycount:\therefsection}+1}}}
+
+\DeclareFieldFormat[articlearxiv]{labelnumber}{\mkbibarticlearxivdesc{#1}}
+
+\newrobustcmd*{\mkbibarticlearxivdesc}[1]{%
+   \number\numexpr\csuse{articlearxiventrycount:\therefsection}+1-#1\relax}
+
+
+
+
+
+
