@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="no-js"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+        <title>Mathias Hudoba de Badyn | Projects | University of Oslo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="hudoba de badyn, hudoba, badyn, de badyn, mathias, network, control, distributed, optimal transport, university of washington, eth, eth zurich, uio, university of oslo, its, department of technology systems">
+        <link rel="stylesheet" href="index_files/mainv2.css">
+        <link rel="stylesheet" href="index_files/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link href="index_files/css.css" rel="stylesheet">
+        <meta name="google-site-verification" content="_KH-p71nZffLu0IbnxfE_Vmqx0rOwxnGW8XJXsGJ83k">
+
+<style>
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 1rem 0 2.5rem;
+  padding: 0;
+}
+
+.project-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+}
+
+.project-img-wrap {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background: #f5f6f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.9rem;
+  box-sizing: border-box;
+  display: block;
+}
+
+.project-info {
+  padding: 0.7rem 0.9rem 0.85rem;
+}
+
+.project-name {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.project-name a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-name a:hover {
+  text-decoration: underline;
+}
+
+.project-agency {
+  margin: 0 0 0.15rem 0;
+  font-size: 0.84rem;
+  opacity: 0.72;
+}
+
+.project-dates {
+  margin: 0;
+  font-size: 0.81rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+</style>
+
+    </head>
+    <body>
+    <div class="Container">
+
+        <div class="Left">
+                <h1 class="nav">Mathias Hudoba de Badyn</h1>
+                <h3 class="nav">Associate Professor – UiO</h3>
+                <br>
+                <hr>
+                <br>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/index.html">About</a></h2>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/publications.html">Publications</a></h2>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/projects.html">Projects</a></h2>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/teaching.html">Research Group</a></h2>
+                <h2 class="nav"><a href="http://mathiashdb.github.io/contact.html">Contact</a></h2>
+                <br>
+                <hr>
+                <hr>
+        </div>
+
+        <div class="Middle">
+
+            <h1>Funded Projects</h1>
+
+            <p>
+            An overview of research projects I am involved in, funded by the Research Council of Norway, the European Union, the US Air Force Office of Scientific Research, and the University of Oslo.
+            </p>
+
+            <div id="project-cards" class="project-grid"></div>
+
+            <script>
+              fetch("https://mathiashdb.github.io/project-cards.html")
+                .then(function(response) {
+                  if (!response.ok) throw new Error("HTTP error " + response.status);
+                  return response.text();
+                })
+                .then(function(html) {
+                  document.getElementById("project-cards").innerHTML = html;
+                })
+                .catch(function(err) {
+                  console.error("Error loading project cards:", err);
+                });
+            </script>
+
+            <br>
+            <hr>
+            <hr>
+
+        </div>
+    </div>
+
+</body></html>
