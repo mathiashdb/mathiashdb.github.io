@@ -12,6 +12,61 @@
         <link rel="stylesheet" href="index_files/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link href="index_files/css.css" rel="stylesheet">
 	<meta name="google-site-verification" content="_KH-p71nZffLu0IbnxfE_Vmqx0rOwxnGW8XJXsGJ83k">
+
+<style>
+  /* News cards — similar to master-card, but thinner */
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0.5rem 0 1.5rem;
+    padding: 0;
+  }
+
+  .news-card {
+    list-style: none;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 0.5rem 0.85rem;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    font-size: 0.9rem;
+  }
+
+  .news-date {
+    display: block;
+    font-weight: 700;         /* extra bold */
+    color: #222222;           /* darker text */
+    margin-bottom: 0.15rem;
+  }
+
+  .news-body {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .news-hidden {
+    display: none;
+  }
+
+  .news-toggle {
+    border: none;
+    background: none;
+    color: #005c99;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    margin-top: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .news-toggle:hover {
+    text-decoration: underline;
+  }
+</style>
+
     </head>
     <body>
     <div class="Container">
@@ -98,50 +153,16 @@ emerging from the Berenstein-Dzienkowski Hamiltonian.
                     <p>
                     </p>
                     <!--<h3 class="content">Reinforcement Learning and Control:</h3>-->
-                    <ul>
-		      <li class="paper-desc"> <strong>Aug 4 2025:</strong>
-For the incoming class of ITS Cybernetics Master's students, you can see the list of available master thesis topics <a href="https://www.mn.uio.no/its/studier/masteroppgaver/masters_projects_CAS/">here</a>, and the specific topics I will supervise <a href="http://mathiashdb.github.io/teaching.html">here</a>. </li>
-		      <li class="paper-desc"> <strong>July 16, 2025:</strong>
-My two submissions to the 2025 Conference on Decision and Control were accepted! My paper with Sebastian Zieglmeier on semi-data driven MPC is available as a preprint <a href="https://arxiv.org/abs/2504.00746">here</a>, and stay tuned for the preprint of my paper with Tyler Summers on Laplacian flows over simplicial complexes. </li>
-		      <li class="paper-desc"> <strong>May 15, 2025:</strong>
-I'm very happy to welcome Savin Gautam to my research group! He will be doing an industrial PhD through Kongsberg Maritime on validation of AI toolchains in the maritime automation sector. </li>
-		      <li class="paper-desc"> <strong>February 15, 2025:</strong>
-I'm very happy to welcome Nikolas Recke to my research group! He will be doing his PhD via the <a href="https://www.fmesolar.no/">FME Solar</a> centre on distributionally robust optimization of Virtual Power Plants. </li>
-		      <li class="paper-desc"> <strong>February 13, 2025:</strong>
-My paper with Andrea Iannelli, Jonas Binz, and Roy Smith on dual-quaternion Kalman filtering for a swarm of spacecraft was published in the Journal on Guidance, Control, & Dynamics. Check out the paper <a href="https://arc.aiaa.org/doi/abs/10.2514/1.G007825">here</a> and the preprint with extended appendix <a href="https://arxiv.org/abs/2411.19033">here</a>. </li>
-		      <li class="paper-desc"> <strong>January 1, 2025:</strong> I'm honoured to be a part of the  <a href="https://www.fmesolar.no/">FME Solar</a>, a Centre for Environmentally Friendly Research, focusing on the Norwegian PV industry. I'll be working on grid integration of large-scale, distributed PV systems via virtual power plants.</li>
-<li class="paper-desc"> <strong>November 1, 2024:</strong> I'll be visiting the Swiss Federal Laboratories for Material Science and Technology (Empa) until the CDC! Thank you to my host Philipp Heer!</li>
-		      <li class="paper-desc"> <strong>July 1, 2024:</strong> My 
-paper on feedback equilibrium seeking with Giuseppe Belgioioso and Dominic Liao-McPherson (and others) was published in the IEEE Transactions on Automatic Control! Check out the paper  <a href="https://ieeexplore.ieee.org/document/10587119">here!</a></li>
-		      <li class="paper-desc"> <strong>June 25, 2024:</strong> I gave a presentation on distributed control for smart buildings and smart cities at the <strong><a target="_blank" href="https://sites.google.com/view/24ecc-workshop-living-labs/home">Exploring cyber-physical-human systems through Living laboratories workshop</a></strong> at the 2024 European Control Conference</li>
-<li class="paper-desc"> <strong>June 1, 2024:</strong>I'm very happy to welcome Mario Virdis to my research group! He will be doing a PhD on nonlinear MPC with classical control guarantees, with a focus on spacecraft GNC. </li>
-		      <li class="paper-desc"> <strong>May 29, 2024:</strong> 
-		      I gave a presentation on distributed MPC to Philipp Heer's group at the Swiss Federal Laboratories for Materials Science and Technology (Empa)</li>
-		      <li class="paper-desc"> <strong>Dec 21, 2023:</strong> 
-I'm hiring up to three postdocs to work on satellite re-orientation using optimal control, or satellite instrumentation. Check out the job posting <a href="https://www.jobbnorge.no/en/available-jobs/job/255243/postdoctoral-research-fellows-in-space-sensors-and-systems">here!</a></li>
-		      <li class="paper-desc"> <strong>March 15, 2023:</strong> My 
-paper on data-driven MPC for building automation with battery 
-degradation with Varsha Behrunani, Marta Zagorowska, and Francesco Ricca
- was accepted to the 2023 CISBAT conference! Stay tuned for the 
-preprint!</li>
-		      <li class="paper-desc"> <strong>March 10, 2023:</strong> My 
-paper on distributed MPC with bounded iterations with Giuseppe 
-Belgioioso, Dominic Liao-McPherson, and Nicolas Pelzmann was accepted to
- the 2023 Ifac World Congress! Check out the preprint <strong><a target="_blank" href="https://arxiv.org/abs/2211.07341">here!</a></strong></li>
-		      <li class="paper-desc"> <strong>Oct. 24, 2022:</strong> Check out our preprint on feedback equilibrium seeking <strong><a target="_blank" href="https://arxiv.org/abs/2210.12088">here!</a></strong></li>
-		      <li class="paper-desc"> <strong>July 15, 2022:</strong> My paper on self-tuning networks with Tyler Summers and Iman Shames was accepted to the 2023 CDC. Stay tuned for the preprint!</li>
-		      <li class="paper-desc"> <strong>June 15, 2022:</strong> 
-Congratulations to my students Nicolas Pelzman and Nivethan Yogarajah 
-for winning the ETH Medal and Willi Studer prize, respectively!</li>
-		      <li class="paper-desc"> <strong>Feb. 1, 2022:</strong> Our paper
- on feedback optimization for robotic swarm coordination was accepted to
- the American Control Conference. Check out the preprint <strong><a target="_blank" href="https://arxiv.org/abs/2109.14486">here!</a></strong></li>
-		      <li class="paper-desc"> <strong>Jan. 14, 2022:</strong> I'm offering a master's thesis project on game theory for smart homes. Check out the posting <strong> <a target="_blank" href="https://sirop.org/app/543ec87d-694e-452a-9909-f823a7bafc1a?_k=djeLCnM2ngzMfFoz">here!</a></strong> </li>  
-		      <li class="paper-desc"> <strong>Jan. 5, 2022:</strong> I'm 
-offering a master's thesis on optimization strategies for trading stock 
-options and other financial derivatives. Check out the posting <strong><a target="_blank" href="https://sirop.org/app/5dcd450a-0cee-461d-a7d7-9f4e6afddcd5?_k=eiBbwJOkQEPpkLoi">here!</a></strong></li>
-		      <li class="paper-desc"> <strong>Jan. 4, 2022:</strong> Our paper on machine learning methods for smart buildings was accepted to Applied Energy. Check out the preprint <strong><a target="_blank" href="https://arxiv.org/abs/2110.15911">here!</a></strong></li>
-                    </ul>
+
+<div id="news-list" class="news-list"></div>
+
+<button id="news-toggle" class="news-toggle" type="button">
+  Show more ↓
+</button>
+
+
+<div style="height: 50px;"></div>
+
                     <h1 class="content">Selected Publications</h1>
                     <!--<h2 class="content">Recent publications (go to <a href="publications.html"><span style="text-decoration: underline;">full list</span></a>)</h2>-->
                     <p>
@@ -172,13 +193,65 @@ Duenas-Osorio, M Mesbahi, J P Crutchfield, MC Cross, R M D’Souza, and M L
             </div>
 
         </div>
-
-	
-
-
-
 	
     </div>
-    
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var newsContainer = document.getElementById('news-list');
+    var toggleButton = document.getElementById('news-toggle');
+
+    if (!newsContainer) return;
+
+    function setupToggle() {
+      var cards = newsContainer.querySelectorAll('.news-card');
+      if (!cards.length) {
+        if (toggleButton) toggleButton.style.display = 'none';
+        return;
+      }
+
+      // Hide all cards after the first 5
+      var hiddenCards = [];
+      for (var i = 5; i < cards.length; i++) {
+        cards[i].classList.add('news-hidden');
+        hiddenCards.push(cards[i]);
+      }
+
+      // If 5 or fewer items, hide the button
+      if (!toggleButton || cards.length <= 5) {
+        if (toggleButton) toggleButton.style.display = 'none';
+        return;
+      }
+
+      var expanded = false;
+
+      toggleButton.addEventListener('click', function () {
+        expanded = !expanded;
+
+        for (var i = 0; i < hiddenCards.length; i++) {
+          hiddenCards[i].style.display = expanded ? 'block' : 'none';
+        }
+
+        toggleButton.textContent = expanded ? 'Show less ↑' : 'Show more ↓';
+      });
+    }
+
+    // Load news cards from external file
+    fetch('https://mathiashdb.github.io/news-cards.html')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('HTTP error ' + response.status);
+        }
+        return response.text();
+      })
+      .then(function (html) {
+        newsContainer.innerHTML = html;
+        setupToggle();
+      })
+      .catch(function (err) {
+        console.error('Error loading news-cards.html:', err);
+        if (toggleButton) toggleButton.style.display = 'none';
+      });
+  });
+</script>
 
 </body></html>
