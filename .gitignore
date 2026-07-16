@@ -1,3 +1,5 @@
+grants_table.tex
+*.bak
 *.log
 *~
 *.aux
@@ -7,3 +9,4 @@
 *.bbl
 *.bcf
 *.blg
+*.el
