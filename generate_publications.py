@@ -6,49 +6,36 @@ Run from the website root: python3 generate_publications.py
 
 import re
 from pathlib import Path
-from datetime import datetime
+import argparse
+import sys
+from html import escape
 
 SCRIPT_DIR = Path(__file__).parent
 MY_NAME = 'Hudoba de Badyn'
 
 BIB_SOURCES = [
+    ('preprint',   SCRIPT_DIR / 'cv' / '5-under-review.bib'),
     ('journal',    SCRIPT_DIR / 'cv' / '1-journal-papers.bib'),
     ('conference', SCRIPT_DIR / 'cv' / '2-conference-papers.bib'),
     ('nonpeer',    SCRIPT_DIR / 'cv' / '3-nonpeer-conf.bib'),
     ('thesis',     SCRIPT_DIR / 'cv' / '6-theses.bib'),
 ]
 
-ENTRY_TYPE_TO_CAT = {
-    'articlearxiv': 'journal',
-    'article':      'journal',
-    'inproceedings':'conference',
-    'conf':         'nonpeer',
-    'thesis':       'thesis',
-    'phdthesis':    'thesis',
-    'mastersthesis':'thesis',
-}
-
-SECTION_ORDER    = ['journal', 'conference', 'nonpeer', 'thesis']
+SECTION_ORDER    = ['preprint', 'journal', 'conference', 'nonpeer', 'thesis']
 SECTION_HEADINGS = {
+    'preprint':   'Preprints',
     'journal':    'Journal Articles',
     'conference': 'Conference Papers',
     'nonpeer':    'Non-Peer-Reviewed Conference Papers',
     'thesis':     'Dissertation &amp; Theses',
 }
-BADGE_STYLE = {
-    'journal':    ('#2563eb', 'Journal'),
-    'conference': ('#059669', 'Conference'),
-    'nonpeer':    ('#7c3aed', 'Non-peer conf.'),
-    'thesis':     ('#b45309', 'Thesis'),
-}
-
 # ---------------------------------------------------------------------------
 # BibTeX parser (no external dependencies; handles custom entry types)
 # ---------------------------------------------------------------------------
 
 def parse_bib_file(path):
     text = Path(path).read_text(encoding='utf-8')
-    text = re.sub(r'%[^\n]*', '', text)          # strip % comments
+    text = re.sub(r'(?<!\\)%[^\n]*', '', text)          # strip % comments
     entries, pos = [], 0
     while pos < len(text):
         at = text.find('@', pos)
@@ -71,8 +58,11 @@ def parse_bib_file(path):
                 if depth == 0:
                     break
             i += 1
+        if depth != 0:
+            raise ValueError(f'{path}: unclosed entry at offset {at}')
         entry = _parse_body(text[brace + 1:i])
         entry['_type'] = entry_type
+        entry['_source'] = str(path)
         entries.append(entry)
         pos = i + 1
     return entries
@@ -168,7 +158,7 @@ def latex_to_html(s):
         if s == prev:
             break
     s = re.sub(r'\\[a-zA-Z]+\s*', '', s)   # any remaining control sequences
-    return s.strip()
+    return escape(s.strip(), quote=True).replace('&amp;amp;', '&amp;').replace('&lt;sub&gt;', '<sub>').replace('&lt;/sub&gt;', '</sub>')
 
 # ---------------------------------------------------------------------------
 # Formatting helpers
@@ -206,14 +196,20 @@ def _doi_url(doi):
     return doi if doi.startswith('http') else f'https://doi.org/{doi}'
 
 
+def has_arxiv_preprint(entry):
+    return (
+        (entry.get('archiveprefix') or '').strip().lower() == 'arxiv'
+        and bool((entry.get('eprint') or '').strip())
+    )
+
+
 def build_links(entry, cat=None):
     links = []
     doi_url = _doi_url(entry.get('doi'))
     if doi_url:
         links.append(('Paper', doi_url, 'pub-link-paper'))
     eprint  = (entry.get('eprint')        or '').strip()
-    archive = (entry.get('archiveprefix') or '').strip().lower()
-    if eprint and archive == 'arxiv':
+    if has_arxiv_preprint(entry):
         links.append(('Preprint', f'https://arxiv.org/abs/{eprint}', 'pub-link-preprint'))
     code = (entry.get('code') or '').strip()
     if code:
@@ -226,8 +222,12 @@ def build_links(entry, cat=None):
 
 
 def venue_str(entry, cat):
+    if cat == 'preprint':
+        # Do not expose the confidential submission venue on the website.
+        return f"arXiv preprint, {safe_year(entry)}" if safe_year(entry) else 'arXiv preprint'
+
     if cat == 'journal':
-        journal = re.sub(r'^in\s+', '', latex_to_html(entry.get('journal', '')), flags=re.I)
+        journal = re.sub(r'^in\s+(?!press\b)', '', latex_to_html(entry.get('journal', '')), flags=re.I)
         vol, num = entry.get('volume', ''), entry.get('number', '')
         pages = (entry.get('pages') or '').replace('--', '–')
         year  = entry.get('year', '')
@@ -283,7 +283,7 @@ def render_card(entry, cat):
     links   = build_links(entry, cat)
 
     links_html = ' '.join(
-        f'<a class="pub-link {cls}" href="{url}" target="_blank" rel="noopener">{text}</a>'
+        f'<a class="pub-link {cls}" href="{escape(url, quote=True)}" target="_blank" rel="noopener">{text}</a>'
         for text, url, cls in links
     )
     venue_p  = f'\n      <p class="pub-venue">{venue}</p>'   if venue      else ''
@@ -301,102 +301,6 @@ def render_card(entry, cat):
 # Page assembly
 # ---------------------------------------------------------------------------
 
-PAGE_CSS = """
-<style>
-.pub-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem 0 2rem;
-  padding: 0;
-}
-.pub-card {
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  padding: 1rem 1.25rem;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.pub-title {
-  margin: 0 0 0.3rem 0;
-  font-size: 1rem;
-  line-height: 1.45;
-  font-weight: 600;
-}
-.pub-authors {
-  margin: 0 0 0.2rem 0;
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-.pub-venue {
-  margin: 0.1rem 0 0.55rem 0;
-  font-size: 0.84rem;
-  opacity: 0.72;
-}
-.pub-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.35rem;
-}
-.pub-link {
-  display: inline-block;
-  font-size: 0.77rem;
-  font-weight: 700;
-  padding: 0.18rem 0.6rem;
-  border-radius: 4px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: opacity 0.15s;
-}
-.pub-link:hover { opacity: 0.82; }
-.pub-link-paper    { background: #dbeafe; color: #1e40af; }
-.pub-link-preprint { background: #ffedd5; color: #9a3412; }
-.pub-link-code     { background: #dcfce7; color: #14532d; }
-</style>"""
-
-PAGE_HEAD = """\
-<!DOCTYPE html>
-<html class="no-js"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-    <title>Mathias Hudoba de Badyn | Publications | University of Oslo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keywords" content="hudoba de badyn, hudoba, badyn, de badyn, mathias, network, control, distributed, optimal transport, university of washington, eth, eth zurich, uio, university of oslo, its, department of technology systems">
-    <link rel="stylesheet" href="index_files/mainv2.css">
-    <link rel="stylesheet" href="index_files/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link href="index_files/css.css" rel="stylesheet">
-    <meta name="google-site-verification" content="_KH-p71nZffLu0IbnxfE_Vmqx0rOwxnGW8XJXsGJ83k">
-"""
-
-PAGE_NAV = """\
-<body>
-<div class="Container">
-  <div class="Left">
-    <h1 class="nav">Mathias Hudoba de Badyn</h1>
-    <h3 class="nav">Associate Professor – UiO</h3>
-    <br><hr><br>
-    <h2 class="nav"><a href="http://mathiashdb.github.io/index.html">About</a></h2>
-    <h2 class="nav"><a href="http://mathiashdb.github.io/publications.html">Publications</a></h2>
-    <h2 class="nav"><a href="http://mathiashdb.github.io/teaching.html">Research Group</a></h2>
-    <h2 class="nav"><a href="http://mathiashdb.github.io/contact.html">Contact</a></h2>
-    <br><hr><hr>
-  </div>
-  <div class="Middle">
-    <h1>Publications</h1>
-    <div class="text">
-      <p>Due to webscraping issues with my email address, Google Scholar and many other publication venues incorrectly parse my last name as &#8220;De Badyn&#8221; or &#8220;de Badyn&#8221;, instead of &#8220;Hudoba de Badyn&#8221;. If you are going to cite my papers, kindly make sure that the citation key is corrected. I have prepared a biblatex file with my name corrected <a href="publications_files/hudoba-de-badyn.bib">here</a> using the <a href="https://retorque.re/zotero-better-bibtex/">BetterBibtex</a> extension for <a href="https://www.zotero.org/">Zotero</a>, for your convenience.</p>
-      <p>Most of my papers are available as preprints on the arXiv. A more-or-less complete list can be found <a href="https://arxiv.org/a/0000-0003-0955-2381.html">here</a>.</p>
-    </div>
-"""
-
-PAGE_FOOT = """\
-    <br><hr><hr>
-  </div>
-</div>
-</body></html>
-"""
 
 
 def generate_html(sections_data):
@@ -408,10 +312,8 @@ def generate_html(sections_data):
         cards = '\n'.join(render_card(e, cat) for e in entries)
         body += f'    <h2>{SECTION_HEADINGS[cat]}</h2>\n    <div class="pub-list">\n{cards}\n    </div>\n\n'
 
-    date = datetime.now().strftime('%Y-%m-%d')
-    body += f'    <p style="font-size:0.75rem;opacity:0.45;margin-top:1.5rem">Generated {date}</p>\n'
-
-    return PAGE_HEAD + PAGE_CSS + '\n</head>\n' + PAGE_NAV + body + PAGE_FOOT
+    template = (SCRIPT_DIR / 'templates' / 'publications.html').read_text(encoding='utf-8')
+    return template.replace('{{PUBLICATION_SECTIONS}}', body)
 
 
 # ---------------------------------------------------------------------------
@@ -425,26 +327,99 @@ def safe_year(entry):
         return 0
 
 
-def main():
+def load_sections():
     sections = {cat: [] for cat in SECTION_ORDER}
-
+    seen = {}
+    errors = []
     for file_cat, path in BIB_SOURCES:
         for entry in parse_bib_file(path):
-            cat = ENTRY_TYPE_TO_CAT.get(entry.get('_type', ''), file_cat)
-            sections.setdefault(cat, []).append(entry)
+            key = entry.get('_key', '')
+            context = f"{path.name}: {key or '(missing key)'}"
+            if not key:
+                errors.append(f'{context}: missing citation key')
+            elif key in seen:
+                errors.append(f'{context}: duplicate citation key (also in {seen[key]})')
+            seen[key] = path.name
+            for field in ('title', 'author'):
+                if not entry.get(field, '').strip():
+                    errors.append(f'{context}: missing {field}')
+            if not safe_year(entry):
+                errors.append(f'{context}: missing or invalid year')
+            archive = entry.get('archiveprefix', '').strip().lower()
+            eprint = entry.get('eprint', '').strip()
+            if archive == 'arxiv' and not eprint:
+                errors.append(f'{context}: arXiv archivePrefix requires an eprint ID')
+            if eprint and not archive:
+                errors.append(f'{context}: eprint requires archivePrefix')
+            if archive == 'arxiv' and eprint and not re.fullmatch(
+                r'(?:\d{4}\.\d{4,5}|[a-zA-Z.-]+(?:[.-][A-Z]{2})?/\d{7})(?:v\d+)?', eprint
+            ):
+                errors.append(f'{context}: invalid arXiv ID {eprint!r}')
+            if file_cat == 'preprint':
+                if not has_arxiv_preprint(entry):
+                    continue
+                cat = 'preprint'
+            else:
+                cat = file_cat
+            sections[cat].append(entry)
+    if errors:
+        raise ValueError('Publication validation failed:\n  ' + '\n  '.join(errors))
+    for entries in sections.values():
+        entries.sort(key=lambda e: (-safe_year(e), e.get('_key', '').casefold()))
+    return sections
 
-    for cat in sections:
-        sections[cat].sort(key=lambda e: -safe_year(e))
 
-    html = generate_html(sections)
-    out  = SCRIPT_DIR / 'publications.html'
-    out.write_text(html, encoding='utf-8')
-    print(f'Written: {out}')
+def generate_bib(sections):
+    # Standard BibLaTeX entry types, retaining LaTeX spelling and full names.
+    types = {'preprint': 'misc', 'journal': 'article',
+             'conference': 'inproceedings', 'nonpeer': 'inproceedings', 'thesis': 'thesis'}
+    chunks = ['% Generated from CV BibTeX sources by generate_publications.py. Do not edit.\n']
     for cat in SECTION_ORDER:
-        n = len(sections.get(cat, []))
-        if n:
-            print(f'  {SECTION_HEADINGS[cat]}: {n}')
+        for entry in sections[cat]:
+            fields = {k: re.sub(r'\s+', ' ', v).strip()
+                      for k, v in entry.items() if not k.startswith('_')}
+            if cat == 'preprint':
+                fields.pop('journal', None)
+                fields.pop('booktitle', None)
+                fields['pubstate'] = 'prepublished'
+            fields.pop('keywords', None)
+            body = ',\n'.join(f'  {k} = {{{v}}}' for k, v in sorted(fields.items()))
+            chunks.append(f"@{types[cat]}{{{entry['_key']},\n{body}\n}}\n")
+    return '\n'.join(chunks)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='Check validation and generated files without writing')
+    parser.add_argument('--bib-output', type=Path, help='Also write the bibliography to this legacy/custom path')
+    args = parser.parse_args()
+    try:
+        sections = load_sections()
+        outputs = {
+            SCRIPT_DIR / 'publications.html': generate_html(sections),
+            SCRIPT_DIR / 'publications_files' / 'hudoba-de-badyn.bib': generate_bib(sections),
+        }
+        if args.bib_output:
+            outputs[args.bib_output.resolve()] = generate_bib(sections)
+        stale = []
+        for path, content in outputs.items():
+            if not path.exists() or path.read_text(encoding='utf-8') != content:
+                stale.append(path)
+        if args.check:
+            if stale:
+                raise ValueError('Generated files need updating:\n  ' + '\n  '.join(map(str, stale)))
+            print('Publication sources and generated files are up to date.')
+        else:
+            for path in stale:
+                path.write_text(outputs[path], encoding='utf-8')
+                print(f'Written: {path}')
+        for cat in SECTION_ORDER:
+            print(f'  {SECTION_HEADINGS[cat]}: {len(sections[cat])}')
+    except (ValueError, OSError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
