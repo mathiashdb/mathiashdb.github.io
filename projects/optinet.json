@@ -3,6 +3,7 @@
   "tag": "project:optinet",
   "code": "RP / 001",
   "title": "OPTINET",
+  "eyebrow": "Network resilience · Distributed autonomous systems",
   "subtitle": "OPTINET aims to answer the question, `what properties of networks make distributed systems resilient? How can you design networks for maximum resilience?'. The answer will lie in the intersection of algebraic graph theory, optimal control, and distributed optimization theory.",
   "status": "Ongoing",
   "period": "Nov 2026 -- Oct 2029",

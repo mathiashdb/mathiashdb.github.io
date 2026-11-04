@@ -3,6 +3,7 @@
   "tag": "project:example",
   "code": "RP / 001",
   "title": "Research project title",
+  "eyebrow": "Research theme · Application area",
   "subtitle": "A short statement of the research question and why it matters.",
   "status": "Project template",
   "period": "Start year — End year",
