@@ -10,3 +10,4 @@ grants_table.tex
 *.bcf
 *.blg
 *.el
+__pycache__/
