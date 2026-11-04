@@ -1,0 +1,30 @@
+{
+  "slug": "optinet",
+  "tag": "project:optinet",
+  "code": "RP / 001",
+  "title": "OPTINET",
+  "subtitle": "OPTINET aims to answer the question, `what properties of networks make distributed systems resilient? How can you design networks for maximum resilience?'. The answer will lie in the intersection of algebraic graph theory, optimal control, and distributed optimization theory.",
+  "status": "Ongoing",
+  "period": "Nov 2026 -- Oct 2029",
+  "funding": "AFOSR EOARD FA8655-26-1-B007",
+  "lead": "Mathias Hudoba de Badyn",
+  "institution": "University of Oslo",
+  "overview": [
+    "Distributed autonomous systems operating over a network have to measure their environment in order to make decisions, and those decisions and measurements have to be propagated to their neighbours in the network. What happens when those measurements are incorrect, or spoofed by an adversary?",
+    "We aim to use fundamental network science to understand how to co-design algorithms that reject spoofed measurements while also optimizing the network itself for the same objective. This would enable safe, resilient networked systems that have a structural and algorithmic protection layer against adverserial signal attacks."
+  ],
+  "objectives": [
+    {"title": "Understand the Network", "text": "Understand the effect that the network structure has on the underlying physical system in terms of fundamental control-theoretic robustness metrics.."},
+    {"title": "Optimize the Network", "text": "Develop algorithm and network co-design methodology to exploit these structures and effects, under control-theoretic robustness metrics, for high-level coordination in distributed systems."},
+    {"title": "Test the Network", "text": "Field-test the algorithms and communication networks in a GNSS-denied environment in Andøya."}
+  ],
+  "visual": {
+    "type": "network",
+    "layout": "classic",
+    "label": "Distributed autonomous systems are subject to antagonistic signal attacks.",
+    "caption": "What properties of networks maximize resilience?"
+  },
+  "links": [
+    {"label": "Contact the project lead", "url": "contact.html"}
+  ]
+}

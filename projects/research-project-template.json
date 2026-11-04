@@ -1,0 +1,32 @@
+{
+  "slug": "research-project-template",
+  "tag": "project:example",
+  "code": "RP / 001",
+  "title": "Research project title",
+  "subtitle": "A short statement of the research question and why it matters.",
+  "status": "Project template",
+  "period": "Start year — End year",
+  "funding": "Funding programme / grant number",
+  "lead": "Mathias Hudoba de Badyn",
+  "institution": "University of Oslo",
+  "overview": [
+    "Introduce the scientific problem, the systems you study, and the gap this project addresses. Give readers a clear reason to care about the question.",
+    "Describe your approach and the contribution you aim to make. Connect the underlying theory with the application, and explain what a successful outcome would enable."
+  ],
+  "objectives": [
+    {"title": "Understand the system", "text": "State the first research objective and the question it will answer."},
+    {"title": "Develop the methods", "text": "Describe the control, estimation, or optimization methods you will develop."},
+    {"title": "Connect theory to practice", "text": "Explain how you will evaluate the methods and where the results will be used."}
+  ],
+  "visual": {
+    "type": "network",
+    "layout": "network",
+    "nodes": 8,
+    "seed": "example-project",
+    "label": "Systems / connections",
+    "caption": "Networked systems & collective behaviour"
+  },
+  "links": [
+    {"label": "Contact the project lead", "url": "contact.html"}
+  ]
+}
