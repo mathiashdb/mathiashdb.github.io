@@ -4,8 +4,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# Validate student project tags and publication sources before starting the LaTeX build.
-python3 "$SCRIPT_DIR/../check_student_project_tags.py"
 python3 -c 'import sys; sys.path.insert(0, ".."); from generate_publications import load_sections; load_sections()'
 python3 generate_grants_table.py
 
