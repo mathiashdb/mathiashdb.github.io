@@ -1,5 +1,7 @@
 # Updating publications
 
+For tag naming and BibTeX examples, see the [project tagging guide](README.md#create-a-project-tag).
+
 The CV files are the source of truth. Do not edit `publications.html` or
 `publications_files/hudoba-de-badyn.bib` directly.
 
@@ -34,6 +36,10 @@ The generator uses Python's standard library and can be invoked from any directo
 It sorts newest year first, then by citation key, and avoids timestamps so unchanged
 sources produce unchanged outputs.
 
+<<<<<<< HEAD
+`./cv/compile.sh` first checks that student project tags agree between supervision
+bibliographies and personnel cards. It also validates publication sources, builds
+the CV, then regenerates both
 `./cv/compile.sh` also validates the sources, builds the CV, then regenerates both
 public outputs after a successful build. It works from any directory. Review and
 commit the source and generated changes together, then publish as usual. Compiling

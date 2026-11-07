@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parent
 PERSONNEL_SOURCES = (
     ('collab-cards.html', 'Research lead'),
     ('phd-cards.html', 'PhD researcher'),
+)
+MASTER_SOURCES = (
     ('current-msc.html', 'Current student'),
     ('past-msc.html', 'Past student'),
 )
@@ -31,10 +33,10 @@ class OpeningTag(HTMLParser):
             self.attrs = dict(attrs)
 
 
-def personnel_for(tag, root=ROOT):
+def tagged_cards(tag, sources, card_class, role_class, root=ROOT):
     cards = []
     seen = set()
-    for filename, role in PERSONNEL_SOURCES:
+    for filename, role in sources:
         source = (root / filename).read_text(encoding='utf-8')
         source = re.sub(r'<!--.*?-->', '', source, flags=re.S)
         for match in re.finditer(r'<article\b[^>]*>.*?</article\s*>', source, re.S | re.I):
@@ -51,8 +53,16 @@ def personnel_for(tag, root=ROOT):
                 continue  # Prefer collaborator, then PhD, current, past if a person occurs twice.
             seen.add(name)
             content = card[len(opening):re.search(r'</article\s*>\s*$', card, re.I).start()]
-            cards.append(f'<article class="person-card"><p class="person-role">{role}</p>{content}</article>')
+            cards.append(f'<article class="{card_class}"><p class="{role_class}">{role}</p>{content}</article>')
     return cards
+
+
+def personnel_for(tag, root=ROOT):
+    return tagged_cards(tag, PERSONNEL_SOURCES, 'person-card', 'person-role', root)
+
+
+def masters_for(tag, root=ROOT):
+    return tagged_cards(tag, MASTER_SOURCES, 'master-project-card', 'master-status', root)
 
 
 def keyword_tags(entry):
@@ -114,8 +124,10 @@ def network_svg(visual, slug):
             nodes += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="20" fill="var(--orange)" fill-opacity=".12"/>'
         fill = 'var(--orange)' if i == highlight else 'var(--paper)'
         stroke = 'var(--orange)' if i == highlight else 'var(--blue)'
-        nodes += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="8" fill="{fill}" stroke="{stroke}" stroke-width="2.5"/>'
-        nodes += f'<text x="{x + 12:.1f}" y="{y - 12:.1f}" fill="currentColor" font-family="monospace" font-size="9">{i + 1:02}</text>'
+        nodes += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="11" fill="{fill}" stroke="{stroke}" stroke-width="2.5"/>'
+        label_color = 'var(--paper)' if i == highlight else 'var(--blue)'
+        nodes += (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="middle" dominant-baseline="central" '
+                  f'fill="{label_color}" font-family="monospace" font-size="9">{i + 1:02}</text>')
     alt = escape(visual.get('alt', 'Illustrative network of connected systems'))
     return (f'<svg viewBox="0 0 400 280" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
             '<defs><pattern id="network-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor" opacity=".18"/></pattern></defs>'
@@ -169,6 +181,7 @@ def render_project(config, sections, root=ROOT):
     if not re.fullmatch(r'project:[a-z0-9]+(?:-[a-z0-9]+)*', tag):
         raise ValueError('Project tag must have the form project:example-project')
     people = personnel_for(tag, root)
+    masters = masters_for(tag, root)
     publication_groups = []
     count = 0
     for cat in SECTION_ORDER:
@@ -181,6 +194,10 @@ def render_project(config, sections, root=ROOT):
             + '\n'.join(render_card(entry, cat) for entry in entries) + '</div>'
         )
     values = {field: escape(config[field], quote=True) for field in required}
+    eyebrow = config.get('eyebrow', '')
+    if not isinstance(eyebrow, str):
+        raise ValueError('Project eyebrow must be a string')
+    values['eyebrow'] = f'<p class="eyebrow">{escape(eyebrow)}</p>' if eyebrow.strip() else ''
     values['overview'] = '\n'.join(f'<p>{escape(p)}</p>' for p in config.get('overview', []))
     values['objectives'] = '\n'.join(
         f'<article class="objective"><span class="objective-label">Objective {i:02}</span>'
@@ -195,8 +212,11 @@ def render_project(config, sections, root=ROOT):
     values['hero_class'] = '' if values['visual'] else ' hero-text-only'
     values['personnel_count'] = str(len(people))
     values['personnel_noun'] = 'person' if len(people) == 1 else 'people'
+    values['master_count'] = str(len(masters))
+    values['master_noun'] = 'student' if len(masters) == 1 else 'students'
     values['publication_count'] = str(count)
     values['personnel'] = ('<div class="personnel-grid">' + '\n'.join(people) + '</div>') if people else '<p class="empty">Project personnel will be announced here.</p>'
+    values['masters'] = ('<div class="masters-list">' + '\n'.join(masters) + '</div>') if masters else '<p class="empty">Master&rsquo;s thesis students will be listed here as they join the project.</p>'
     values['publications'] = '\n'.join(publication_groups) if count else '<p class="empty">Project publications will be listed here as they become available.</p>'
     template = Template((root / 'templates/research-project.html').read_text(encoding='utf-8'))
     return template.substitute(values)
