@@ -54,7 +54,7 @@
 
 .phd-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: 1.5rem;
   margin: 1rem 0 2rem;
   padding: 0;
@@ -92,6 +92,8 @@
 
 .phd-content {
   flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .phd-name {
@@ -112,9 +114,9 @@
   opacity: 0.85;
 }
 
-@media (max-width: 768px) {
-  .phd-grid {
-    justify-items: center;   /* centers cards horizontally */
+@media (max-width: 480px) {
+  .phd-main {
+    flex-direction: column;
   }
 }
 
@@ -152,16 +154,13 @@
 I'm extremely lucky to work with an enthusiastic, multidisciplinary group of researchers in a wide variety of control theory and application topics. Here they are, listed in order of when they started their PhD.
 </p>
 
-<!-- <div class="phd-grid"> -->
-
 <div id="phd-cards" class="phd-grid"></div>
 
 <script>
   fetch("https://mathiashdb.github.io/phd-cards.html")
     .then(response => response.text())
     .then(html => {
-      document.getElementById("phd-cards").innerHTML =
-        `<div class="phd-grid">` + html + `</div>`;
+      document.getElementById("phd-cards").innerHTML = html;
     });
 </script>
   
